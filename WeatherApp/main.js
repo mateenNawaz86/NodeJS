@@ -1,9 +1,11 @@
-let weathercon = document.getElementById("weathercon");
+"use strict";
 
+let weathercon = document.getElementById("weathercon");
 let currentDate = document.getElementById("date");
 
 let temperatureStatus = "clouds";
 
+// Function for getting the day
 const getCurrentDate = () => {
   const date = new Date();
   let weekDay = new Array(7);
@@ -21,7 +23,7 @@ const getCurrentDate = () => {
 
 getCurrentDate();
 
-// function for getting day, month and year
+// function for getting month, date and time
 const getCurrentDay = () => {
   // Get months in string
   const months = [
@@ -46,8 +48,9 @@ const getCurrentDay = () => {
   const minutes = currentDay.getMinutes();
   const hour = currentDay.getHours();
 
-  //   Getting PM 7 AM
+  //   Getting PM & AM
   clockCycle = "AM";
+
   if (hour > 11) {
     clockCycle = "PM";
 
