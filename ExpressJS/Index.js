@@ -8,11 +8,11 @@ const app = express();
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 const staticPath = path.join(__dirname, "./public");
 
-// Serve the static website using Express static method
-app.use(express.static(staticPath));
-
 // Setting up the HBS Engine
 app.set("view engine", "hbs");
+
+// Serve the static website using Express static method
+app.use(express.static(staticPath));
 
 app.get("/", (req, res) => {
   res.render("index", {
@@ -20,10 +20,16 @@ app.get("/", (req, res) => {
   });
 });
 
-// Create a route for static web page
-app.get("/", (req, res) => {
-  res.send("<h1>Hello Mateen from home page</h1>");
-});
+// Get path with custom directory
+// const customPath = path.join(__dirname, "./ChangeDirName");
+
+// // Change default directory to custom directory
+// app.set("views", customPath);
+
+// // Response from Custom directory
+// app.get("/about", (req, res) => {
+//   res.render("about");
+// });
 
 app.listen(port, () => {
   console.log(`Dummy app is listening from port ${port}`);
