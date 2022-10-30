@@ -11,6 +11,15 @@ const staticPath = path.join(__dirname, "./public");
 // Serve the static website using Express static method
 app.use(express.static(staticPath));
 
+// Setting up the HBS Engine
+app.set("view engine", "hbs");
+
+app.get("/", (req, res) => {
+  res.render("index", {
+    logoName: "Mateen",
+  });
+});
+
 // Create a route for static web page
 app.get("/", (req, res) => {
   res.send("<h1>Hello Mateen from home page</h1>");
