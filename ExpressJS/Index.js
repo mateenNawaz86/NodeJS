@@ -35,6 +35,13 @@ app.get("/about", (req, res) => {
   });
 });
 
+// Error page
+app.get("*", (req, res) => {
+  res.render("error", {
+    errorMsg: "PAGE NOT FOUND",
+  });
+});
+
 app.listen(port, () => {
   console.log(`Dummy app is listening from port ${port}`);
 });
