@@ -2,6 +2,7 @@ import express from "express";
 import url from "url";
 import path from "path";
 import hbs from "hbs";
+import requests from "requests";
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -30,9 +31,27 @@ app.get("/", (req, res) => {
 
 // about page
 app.get("/about", (req, res) => {
-  res.render("about", {
-    logoName: "Mateen",
-  });
+  requests(
+    `http://api.openweathermap.org/data/2.5/weather?q=${req.query.name}&units=metric&appid=b974154b70ff11af3b49d415da3e3d08`
+  )
+    .on("data", (chunk) => {
+      // convert Data into JS object
+      const data = JSON.parse(chunk);
+      // pass the converted object int array
+      const apiData = [data];
+
+      console.log(
+        `In ${apiData[0].name} temperature is ${apiData[0].main.temp}`
+      );
+
+      res.write(apiData[0].name);
+    })
+    .on("end", (err) => {
+      if (err) {
+        return console.log("connection closed due to errors", err);
+      }
+      res.end();
+    });
 });
 
 // Error page
