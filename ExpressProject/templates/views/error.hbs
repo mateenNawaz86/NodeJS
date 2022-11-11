@@ -1,0 +1,53 @@
+{{>boilerPlate}}
+    <div class="container-fluid main_menu">
+      <div class="row">
+        <div class="col-md-10 col-12 mx-auto">
+          <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" id="navbar-brand" href="/">
+              <i class="fa-solid fa-snowflake"> </i>
+              Weather
+              <i class="fa-solid fa-snowflake"></i></a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              {{>navbar}}
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header area for home page start -->
+    <div class="container main_header">
+      <div class="row">
+        <div class="col-md-12 col-12 main_header_left align-items-center justify-content-center">
+          <figure class="error__img">
+            <img
+              src="./assets/error.png"
+              alt="error"
+              class="img-fluid"
+              title="Mateen Nawaz"
+            />
+          </figure>
+          <p class="error__msg mb-4">PAGE NOTE FOUND!</p>
+          <a href="/">
+            <button class="btn btn-info">Go Back</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Header area for home page end -->
+    {{>footer}}
+
+    </body>
+</html>
