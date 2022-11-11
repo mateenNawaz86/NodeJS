@@ -162,7 +162,7 @@ body {
   background-color: var(--main-color);
   color: var(--white-color);
   font-size: 1.6rem;
-  padding: 0 3rem;
+  padding: 0 2.5rem;
   border-radius: 1rem;
   cursor: pointer;
   text-transform: uppercase;
@@ -266,6 +266,18 @@ footer p {
   .main_header_right {
     height: auto;
     margin: 3rem 0;
+  }
+
+  .inp__form input[type="submit"] {
+    padding: 0 1.8rem;
+  }
+
+  .inp__form {
+    width: auto;
+  }
+
+  .tempInfo {
+    width: auto;
   }
 }
 /* Responsive Code end */
