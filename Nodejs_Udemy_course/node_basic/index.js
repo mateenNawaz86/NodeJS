@@ -5,7 +5,6 @@ const port = 3001;
 const app = http.createServer((req, res) => {
   //   console.log(req);
   //   console.log(req.url, req.method, req.headers);
-
   let url = req.url;
   let method = req.method;
   // Send back response to the server
@@ -20,7 +19,20 @@ const app = http.createServer((req, res) => {
   }
 
   if (url === "/userdata" && method === "POST") {
-    fs.writeFileSync("userMsg.txt", "Dummy Data");
+    // Code store incoming data into buffer start
+    const reqBody = []; // store incoming request data
+    req.on("data", (chunk) => {
+      console.log(chunk);
+      reqBody.push(chunk); // push chunks of incoming data to variable
+    });
+    req.on("end", () => {
+      const parseBody = Buffer.concat(reqBody).toString(); // convert incoming req data to string
+      // console.log(parseBody)
+      const message = parseBody.split("=")[1];
+      fs.writeFileSync("userMsg.txt", message); // file creation with async nature
+    });
+
+    // Code store incoming data into buffer end
     res.statusCode = 302;
     res.setHeader("location", "/");
     return res.end();
