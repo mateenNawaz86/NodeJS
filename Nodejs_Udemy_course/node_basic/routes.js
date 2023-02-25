@@ -11,6 +11,7 @@ const requestHandler = (req, res) => {
       "<body><form action='/userdata' method='POST'><input type='text' placeholder='enter user name' name='username' /><button type='submit'>Send</button></form></body>"
     );
     res.write("</html>");
+    // Here we sent the client code
     return res.end();
   }
 
@@ -36,6 +37,8 @@ const requestHandler = (req, res) => {
       });
     });
   }
+
+  // Headers cannot be set after sending the client
   res.setHeader("Content-Type", "text/html");
   res.write("<html>");
   res.write(" <head><title>My first page</title></head>");
