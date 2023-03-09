@@ -3,10 +3,10 @@ const path = require("path");
 
 const bodyParser = require("body-parser");
 
-const adminRoute = require("./routes/admin");
+const adminData = require("./routes/admin");
 const shopRoute = require("./routes/shop");
 
-const port = 4000;
+const port = 5000;
 const app = express();
 
 // app.get("/", (req, res) => {
@@ -21,8 +21,11 @@ const app = express();
 // Middleware used for parsing a request body
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Middleware for serve static files to UI
+app.use(express.static(path.join(__dirname, "public")));
+
 // Routes
-app.use("/api", adminRoute);
+app.use("/api", adminData.routes);
 app.use(shopRoute);
 
 // Route for Error page
