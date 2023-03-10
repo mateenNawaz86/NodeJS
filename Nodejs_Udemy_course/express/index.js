@@ -9,6 +9,10 @@ const shopRoute = require("./routes/shop");
 const port = 5000;
 const app = express();
 
+// Set the Dynamic Template
+app.set("view engine", "pug");
+app.set("views", "views"); // set the dynamic route for file
+
 // app.get("/", (req, res) => {
 //   res.send("<h1>Hey, Mateen</h1>");
 // });
