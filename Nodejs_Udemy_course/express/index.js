@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 
 const bodyParser = require("body-parser");
+const { engine } = require("express-handlebars");
 
 const adminData = require("./routes/admin");
 const shopRoute = require("./routes/shop");
@@ -10,7 +11,12 @@ const port = 5000;
 const app = express();
 
 // Set the Dynamic Template
-app.set("view engine", "pug");
+// app.set("view engine", "pug");
+app.engine(
+  ".hbs",
+  engine({ extname: ".hbs", defaultLayout: false, layoutsDir: "views" })
+);
+app.set("view engine", "hbs");
 app.set("views", "views"); // set the dynamic route for file
 
 // app.get("/", (req, res) => {
