@@ -14,7 +14,11 @@ const app = express();
 // app.set("view engine", "pug");
 app.engine(
   ".hbs",
-  engine({ extname: ".hbs", defaultLayout: false, layoutsDir: "views" })
+  engine({
+    extname: ".hbs",
+    defaultLayout: "main-layout",
+    layoutsDir: "views/layouts/",
+  })
 );
 app.set("view engine", "hbs");
 app.set("views", "views"); // set the dynamic route for file
