@@ -1,26 +1,9 @@
 const express = require("express");
-// const path = require("path");
-
-// const rootDir = require("../util/path");
-const adminData = require("./admin");
+const productController = require("../controllers/products");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  // res.sendFile(path.join(__dirname, "../", "views", "shop.html"));
-  // console.log(adminData.products);
-  // res.sendFile(path.join(rootDir, "views", "shop.html"));
-
-  // By using Template engine PUG
-  const products = adminData.products;
-  res.render("shop", {
-    prods: products,
-    path: "/",
-    pageTitle: "Shop",
-    hasProducts: products.length > 0,
-    activeShop: true,
-    productCSS: true,
-  });
-});
+// Route for showing all products list
+router.get("/", productController.getProducts);
 
 module.exports = router;
