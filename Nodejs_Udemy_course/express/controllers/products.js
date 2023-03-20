@@ -12,7 +12,7 @@ exports.getAddProduct = (req, res) => {
 
 // This logic for posting a new product
 exports.postAddProduct = (req, res) => {
-  products.push({ pageTitle: req.body.title });
+  products.push({ title: req.body.title });
   res.redirect("/");
 };
 

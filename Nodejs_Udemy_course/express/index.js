@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 
 const adminRoutes = require("./routes/admin");
 const shopRoute = require("./routes/shop");
+const errorController = require("./controllers/error");
 
 const port = 5000;
 const app = express();
@@ -24,12 +25,7 @@ app.use("/api", adminRoutes);
 app.use(shopRoute);
 
 // Route for Error page
-app.use((req, res, next) => {
-  // res.status(404).sendFile(path.join(__dirname, "views", "error.html"));
-  res
-    .status(404)
-    .render("error", { pageTitle: "PAGE NOT FOUND", path: "Error" });
-});
+app.use(errorController.error);
 
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);
