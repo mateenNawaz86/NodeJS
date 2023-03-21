@@ -1,4 +1,5 @@
-const products = [];
+// const products = [];
+const Product = require("../models/product");
 
 // This logic return the add product form
 exports.getAddProduct = (req, res) => {
@@ -12,19 +13,23 @@ exports.getAddProduct = (req, res) => {
 
 // This logic for posting a new product
 exports.postAddProduct = (req, res) => {
-  products.push({ title: req.body.title });
+  // products.push({ title: req.body.title });
+
+  const product = new Product(req.body.title); // grabe title from request body
+  product.save(); // call save method to save the new product into the array
   res.redirect("/");
 };
 
 // This logic for getting all products
 exports.getProducts = (req, res) => {
-  res.render("shop", {
-    prods: products,
-    prodTitle: products.title,
-    path: "/",
-    pageTitle: "Shop",
-    hasProducts: products.length > 0,
-    activeShop: true,
-    productCSS: true,
-  });
+  Product.fetchAll((products) => {
+    res.render("shop", {
+      prods: products,
+      path: "/",
+      pageTitle: "Shop",
+      hasProducts: products.length > 0,
+      activeShop: true,
+      productCSS: true,
+    });
+  }); // calling static method for fetching all products
 };
