@@ -3,7 +3,7 @@ const Product = require("../models/product");
 
 // This logic return the add product form
 exports.getAddProduct = (req, res) => {
-  res.render("add-product", {
+  res.render("admin/add-product", {
     pageTitle: "Add Product",
     path: "/admin/add-product",
     productCSS: true,
@@ -23,7 +23,7 @@ exports.postAddProduct = (req, res) => {
 // This logic for getting all products
 exports.getProducts = (req, res) => {
   Product.fetchAll((products) => {
-    res.render("shop", {
+    res.render("shop/product-list", {
       prods: products,
       path: "/",
       pageTitle: "Shop",
