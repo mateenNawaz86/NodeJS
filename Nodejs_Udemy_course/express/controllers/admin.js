@@ -1,11 +1,10 @@
-// const products = [];
 const Product = require("../models/product");
 
 // This logic return the add product form
 exports.getAddProduct = (req, res) => {
   res.render("admin/add-product", {
     pageTitle: "Add Product",
-    path: "/admin/add-product",
+    path: "/add-product",
     productCSS: true,
     activeAddProduct: true,
   });
@@ -13,23 +12,18 @@ exports.getAddProduct = (req, res) => {
 
 // This logic for posting a new product
 exports.postAddProduct = (req, res) => {
-  // products.push({ title: req.body.title });
-
   const product = new Product(req.body.title); // grabe title from request body
   product.save(); // call save method to save the new product into the array
   res.redirect("/");
 };
 
-// This logic for getting all products
+// This logic is for getting the admin products
 exports.getProducts = (req, res) => {
   Product.fetchAll((products) => {
-    res.render("shop/product-list", {
+    res.render("admin/products", {
       prods: products,
-      path: "/",
-      pageTitle: "Shop",
-      hasProducts: products.length > 0,
-      activeShop: true,
-      productCSS: true,
+      path: "/admin/product",
+      pageTitle: "Admin Products",
     });
-  }); // calling static method for fetching all products
+  });
 };
