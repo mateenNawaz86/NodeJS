@@ -12,7 +12,11 @@ exports.getAddProduct = (req, res) => {
 
 // This logic for posting a new product
 exports.postAddProduct = (req, res) => {
-  const product = new Product(req.body.title); // grabe title from request body
+  const title = req.body.title;
+  const imgURL = req.body.imgURL;
+  const description = req.body.description;
+  const price = req.body.price;
+  const product = new Product(title, imgURL, description, price); // grabe all info from request body
   product.save(); // call save method to save the new product into the array
   res.redirect("/");
 };

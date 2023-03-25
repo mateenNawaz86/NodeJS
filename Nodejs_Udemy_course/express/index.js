@@ -2,10 +2,7 @@ const express = require("express");
 const path = require("path");
 
 const bodyParser = require("body-parser");
-// const { engine } = require("express-handlebars");
 
-const adminRoutes = require("./routes/admin");
-const shopRoute = require("./routes/shop");
 const errorController = require("./controllers/error");
 
 const port = 5000;
@@ -13,6 +10,9 @@ const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", "views"); // set the dynamic route for file
+
+const adminRoutes = require("./routes/admin");
+const shopRoute = require("./routes/shop");
 
 // Middleware used for parsing a request body
 app.use(bodyParser.urlencoded({ extended: false }));
