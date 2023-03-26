@@ -11,6 +11,18 @@ exports.getProducts = (req, res) => {
   }); // calling static method for fetching all products
 };
 
+// This logic for showing the detail of the product
+exports.getProductDetail = (req, res) => {
+  const prodID = req.params.productId; // Grab the ID from the req body
+  Product.findProdById(prodID, (product) => {
+    res.render("shop/product-detail", {
+      product: product,
+      pageTitle: "Product Detail",
+      path: "/products",
+    });
+  });
+};
+
 // This logic for landing page
 exports.getIndex = (req, res, next) => {
   Product.fetchAll((products) => {
@@ -27,6 +39,14 @@ exports.getCart = (req, res) => {
   res.render("shop/cart", {
     path: "/cart",
     pageTitle: "Your Cart",
+  });
+};
+
+// This logic for cart page
+exports.getOrders = (req, res) => {
+  res.render("shop/orders", {
+    path: "/orders",
+    pageTitle: "Your Orders",
   });
 };
 

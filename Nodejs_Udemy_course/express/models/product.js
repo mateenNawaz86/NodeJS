@@ -29,6 +29,7 @@ module.exports = class Product {
 
   // Method to save new product to array
   save() {
+    this.id = Math.random().toString(); // Create random id's
     getProdsFromFile((products) => {
       // Push newly created product to products array which is stored in file
       products.push(this); // here 'this' refer to the class object
@@ -43,5 +44,14 @@ module.exports = class Product {
   // Method to fetch all products from array
   static fetchAll(cb) {
     getProdsFromFile(cb);
+  }
+
+  // Method for showing the Detail of the selected product
+  static findProdById(id, cb) {
+    getProdsFromFile((products) => {
+      // Grab the specific selected product from file by inputed ID
+      const product = products.find((item) => item.id === id);
+      cb(product); // Pass selected prod from callback func
+    });
   }
 };

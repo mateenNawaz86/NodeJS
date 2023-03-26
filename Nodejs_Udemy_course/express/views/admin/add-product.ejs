@@ -1,5 +1,6 @@
 
     <%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/form.css" />
     <link rel="stylesheet" href="/css/product.css" />
   </head>
   <body>
@@ -21,9 +22,9 @@
         </div>
         <div class="form-control">
           <label for="price">Price</label>
-          <input type="number" name="price" id="price" />
+          <input type="number" name="price" id="price" step="0.01"/>
         </div>
-        <button type="submit">Add Product</button>
+        <button type="submit" class="btn">Add Product</button>
       </form>
     </main>
 <%- include('../includes/end.ejs') %>
