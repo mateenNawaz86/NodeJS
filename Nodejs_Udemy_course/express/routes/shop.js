@@ -13,8 +13,11 @@ router.get("/products", shopController.getProducts);
 // Route for getting the detail of selected product
 router.get("/product/:productId", shopController.getProductDetail);
 
-// Route for move on to the Cart
+// GET Route for move product to the Cart
 router.get("/cart", shopController.getCart);
+
+// POST ROute for add product to the CART
+router.post("/cart", shopController.postCart);
 
 // Route for orders page
 router.get("/orders", shopController.getOrders);

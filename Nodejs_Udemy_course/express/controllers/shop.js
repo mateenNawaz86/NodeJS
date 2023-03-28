@@ -1,4 +1,5 @@
 const Product = require("../models/product");
+const Cart = require("../models/cart");
 
 // This logic for getting all products
 exports.getProducts = (req, res) => {
@@ -34,12 +35,21 @@ exports.getIndex = (req, res, next) => {
   });
 };
 
-// This logic for cart page
+// This logic is for GET cart route
 exports.getCart = (req, res) => {
   res.render("shop/cart", {
     path: "/cart",
     pageTitle: "Your Cart",
   });
+};
+
+// This logic is for POST cart
+exports.postCart = (req, res) => {
+  const prodId = req.body.productId;
+  Product.findProdById(prodId, (product) => {
+    Cart.addProduct(prodId, product.price);
+  });
+  res.redirect("/cart");
 };
 
 // This logic for cart page
