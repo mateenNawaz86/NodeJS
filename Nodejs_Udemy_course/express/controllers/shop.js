@@ -52,6 +52,8 @@ exports.postCart = (req, res) => {
   res.redirect("/cart");
 };
 
+
+
 // This logic for cart page
 exports.getOrders = (req, res) => {
   res.render("shop/orders", {

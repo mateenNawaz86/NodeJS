@@ -2,11 +2,37 @@ const Product = require("../models/product");
 
 // This logic return the add product form
 exports.getAddProduct = (req, res) => {
-  res.render("admin/add-product", {
+  res.render("admin/edit-product", {
     pageTitle: "Add Product",
     path: "/add-product",
-    productCSS: true,
-    activeAddProduct: true,
+    editing: false,
+  });
+};
+
+// This logic is for GET edit-product route
+exports.getEditProduct = (req, res) => {
+  const editMode = req.query.edit; // grab the edit mode
+
+  if (!editMode) {
+    return res.redirect("/");
+  }
+
+  // Grab the productId from the request body
+  const prodId = req.params.productId;
+
+  Product.findProdById(prodId, (product) => {
+    // IF product NOT find with the gien ID
+    if (!prodId) {
+      return res.redirect("/");
+    }
+
+    // Return this logic if it is in the editMode
+    res.render("admin/edit-product", {
+      pageTitle: "Edit Product",
+      path: "/admin/edit-product",
+      editing: editMode,
+      product: product,
+    });
   });
 };
 

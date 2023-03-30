@@ -12,5 +12,8 @@ router.get("/admin/product", adminController.getProducts);
 // Route for posting a new product to existing list
 router.post("/product", adminController.postAddProduct);
 
+// GET Route for edit the product
+router.get("/admin/edit-product/:productId", adminController.getEditProduct);
+
 // exports all routes
 module.exports = router;
