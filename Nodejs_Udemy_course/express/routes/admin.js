@@ -15,5 +15,8 @@ router.post("/product", adminController.postAddProduct);
 // GET Route for edit the product
 router.get("/admin/edit-product/:productId", adminController.getEditProduct);
 
+// POST Route update the new edit data
+router.post("/admin/edit-product", adminController.postEditProduct);
+
 // exports all routes
 module.exports = router;

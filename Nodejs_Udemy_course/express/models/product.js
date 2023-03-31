@@ -20,7 +20,8 @@ const getProdsFromFile = (cb) => {
 
 // Class for managing all incoming products
 module.exports = class Product {
-  constructor(title, imgURL, description, price) {
+  constructor(id, title, imgURL, description, price) {
+    this.id = id;
     this.title = title;
     this.imgURL = imgURL;
     this.description = description;
@@ -29,15 +30,30 @@ module.exports = class Product {
 
   // Method to save new product to array
   save() {
-    this.id = Math.random().toString(); // Create random id's
     getProdsFromFile((products) => {
-      // Push newly created product to products array which is stored in file
-      products.push(this); // here 'this' refer to the class object
+      // Check IF the edit requested product ID is already in the array or NOT
+      if (this.id) {
+        // Grab the existing product index from an array
+        const existingProdInd = products.findIndex(
+          (item) => item.id === this.id
+        );
+        const updatedProducts = [...products]; // updated existing array with new data
+        updatedProducts[existingProdInd] = this;
+        // Store newly created product into file
+        fs.writeFile(p, JSON.stringify(updatedProducts), (error) => {
+          console.log(error);
+        });
+      } else {
+        this.id = Math.random().toString(); // Create random id's
 
-      // Store newly created product into file
-      fs.writeFile(p, JSON.stringify(products), (error) => {
-        console.log(error);
-      }); // stringify convert JS object into JSON
+        // Push newly created product to products array which is stored in file
+        products.push(this); // here 'this' refer to the class object
+
+        // Store newly created product into file
+        fs.writeFile(p, JSON.stringify(products), (error) => {
+          console.log(error);
+        }); // stringify convert JS object into JSON
+      }
     });
   }
 

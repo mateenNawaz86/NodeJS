@@ -19,7 +19,6 @@ exports.getEditProduct = (req, res) => {
 
   // Grab the productId from the request body
   const prodId = req.params.productId;
-
   Product.findProdById(prodId, (product) => {
     // IF product NOT find with the gien ID
     if (!prodId) {
@@ -36,13 +35,35 @@ exports.getEditProduct = (req, res) => {
   });
 };
 
+// This logic is for POST edit product
+exports.postEditProduct = (req, res) => {
+  const prodId = req.body.productId;
+  const updatedTitle = req.body.title;
+  const updatedImgURL = req.body.imgURL;
+  const updatedDescription = req.body.description;
+  const updatedPrice = req.body.price;
+
+  // Sent updated Data to the product class
+  const updatedProduct = new Product(
+    prodId,
+    updatedTitle,
+    updatedImgURL,
+    updatedDescription,
+    updatedPrice
+  );
+
+  // Save the updated data
+  updatedProduct.save();
+  res.redirect("/api/admin/product");
+};
+
 // This logic for posting a new product
 exports.postAddProduct = (req, res) => {
   const title = req.body.title;
   const imgURL = req.body.imgURL;
   const description = req.body.description;
   const price = req.body.price;
-  const product = new Product(title, imgURL, description, price); // grabe all info from request body
+  const product = new Product(null, title, imgURL, description, price); // grabe all info from request body
   product.save(); // call save method to save the new product into the array
   res.redirect("/");
 };
