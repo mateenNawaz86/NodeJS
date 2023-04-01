@@ -37,9 +37,26 @@ exports.getIndex = (req, res, next) => {
 
 // This logic is for GET cart route
 exports.getCart = (req, res) => {
-  res.render("shop/cart", {
-    path: "/cart",
-    pageTitle: "Your Cart",
+  Cart.getCartProd((cart) => {
+    Product.fetchAll((products) => {
+      const cartProducts = [];
+      // Filtered out the product which are exactly in the cart
+      for (prodItem of products) {
+        // Check cart product ID is matched with product in the list
+        const cartProdData = cart.products.find(
+          (item) => item.id === prodItem.id
+        );
+        if (cartProdData) {
+          // IF product in the cart push into the cart page
+          cartProducts.push({ productData: prodItem, qty: cartProdData.qty });
+        }
+      }
+      res.render("shop/cart", {
+        path: "/cart",
+        pageTitle: "Your Cart",
+        products: cartProducts,
+      });
+    });
   });
 };
 
@@ -51,8 +68,6 @@ exports.postCart = (req, res) => {
   });
   res.redirect("/cart");
 };
-
-
 
 // This logic for cart page
 exports.getOrders = (req, res) => {

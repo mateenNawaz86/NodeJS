@@ -25,6 +25,7 @@
           <div class="card__actions">
             <a href="/api/admin/edit-product/<%= product.id %>?edit=true" class="btn">Edit</a>
             <form action="/api/admin/delete-product" method="POST">
+              <input type="hidden" name="productId" value="<%= product.id %>">
               <button type="submit" class="btn">Delete</button>
             </form>
           </div>

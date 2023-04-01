@@ -78,3 +78,10 @@ exports.getProducts = (req, res) => {
     });
   });
 };
+
+// This is logic is used to Delete item from the list
+exports.postDeleteProd = (req, res) => {
+  const prodId = req.body.productId;
+  Product.deleteById(prodId);
+  res.redirect("/api/admin/product");
+};

@@ -10,13 +10,16 @@ router.get("/add-product", adminController.getAddProduct);
 router.get("/admin/product", adminController.getProducts);
 
 // Route for posting a new product to existing list
-router.post("/product", adminController.postAddProduct);
+router.post("/admin/product", adminController.postAddProduct);
 
 // GET Route for edit the product
 router.get("/admin/edit-product/:productId", adminController.getEditProduct);
 
 // POST Route update the new edit data
 router.post("/admin/edit-product", adminController.postEditProduct);
+
+// POST ROute for deleting an existing product from the cart
+router.post("/admin/delete-product", adminController.postDeleteProd);
 
 // exports all routes
 module.exports = router;

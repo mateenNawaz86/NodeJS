@@ -13,7 +13,6 @@ router.get("/products", shopController.getProducts);
 // Route for getting the detail of selected product
 router.get("/product/:productId", shopController.getProductDetail);
 
-
 // GET Route for move product to the Cart
 router.get("/cart", shopController.getCart);
 
