@@ -69,6 +69,15 @@ exports.postCart = (req, res) => {
   res.redirect("/cart");
 };
 
+// This logic is used for delete the item from the cart
+exports.postCartProdDelete = (req, res) => {
+  const prodId = req.body.productId;
+  Product.findProdById(prodId, (product) => {
+    Cart.deleteProd(prodId, product.price);
+    res.redirect("/cart");
+  });
+};
+
 // This logic for cart page
 exports.getOrders = (req, res) => {
   res.render("shop/orders", {

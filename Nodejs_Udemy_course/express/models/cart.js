@@ -74,6 +74,12 @@ module.exports = class Cart {
 
       // Grab the selected product from the array
       const product = updatedCart.products.find((item) => item.id === id);
+
+      // IF we have no product
+      if (!product) {
+        return;
+      }
+
       const productQty = product.qty; // product quantity
 
       // Return the product list except the removed one
